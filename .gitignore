@@ -1,0 +1,5 @@
+# Arquivos de dados grandes do DATASUS 
+PARS2606a.csv
+
+# Opcional: descomente a linha abaixo para ignorar todos os CSVs da pasta dados
+# dados/*.csv
