@@ -47,3 +47,20 @@ Get-Content .\view.sql | docker exec -i mysql_dbsia mysql -u root -prootpassword
  ```bash
  SELECT * FROM pa_ijui LIMIT 10;
  ```
+
+ ## Análise de Dados
+ ### 1. Instalar depêndencias do Python
+ ```bash
+ uv sync
+ ```
+
+ ### 2. Iniciar o Junyper
+ ```bash
+ uv run jupyter lab
+ ```
+
+ ### 3. Abra o Junyper
+ 
+ Etapa2_Analise_SIASUS.ipynb
+
+ execute as células com shift + Enter
