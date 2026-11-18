@@ -1,0 +1,33 @@
+services:
+  db:
+    image: mysql:8.0
+    container_name: mysql_dbsia
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: dbsia
+      MYSQL_USER: dbsia_user
+      MYSQL_PASSWORD: dbsia_password
+    ports:
+      - "3306:3306"
+    volumes:
+      # Persistência dos dados do MySQL
+      - mysql_data:/var/lib/mysql
+      # Mapeia a pasta local './dados' para dentro do container
+      - ./dados:/var/lib/mysql-files
+    command:
+      - --default-authentication-plugin=mysql_native_password
+      - --secure-file-priv=/var/lib/mysql-files
+      - --local-infile=1
+      - --character-set-server=latin1
+      - --collation-server=latin1_swedish_ci
+      - --max_allowed_packet=256M
+      - --innodb_buffer_pool_size=512M
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-prootpassword"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  mysql_data:
